@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 import time
 
-my_stream_name = 'moxakinesis-develop'
+my_stream_name = 'mykinesis'
 
 kinesis_client = boto3.client('kinesis', region_name='us-west-2')
 
