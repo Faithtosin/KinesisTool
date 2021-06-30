@@ -1,9 +1,10 @@
 import boto3
-import json
-from datetime import datetime
+import base64
 import time
+import json
+import pprint
 
-my_stream_name = 'mykinesis'
+my_stream_name = 'eirgrid-stream-develop'
 
 kinesis_client = boto3.client('kinesis', region_name='us-west-2')
 
@@ -24,7 +25,11 @@ while 'NextShardIterator' in record_response:
     record_response = kinesis_client.get_records(ShardIterator=record_response['NextShardIterator'],
                                                   Limit=2)
 
-    print(record_response)
+    pprint.pprint(record_response)
+    print('----------------------')
+    decoded_record_data = [base64.b64decode(record['Data']) for record in record_response['Records']]
+    deserialized_data = [json.loads(decoded_record) for decoded_record in decoded_record_data]
+    pprint.pprint(deserialized_data)
     print('-------------------------------------------------------------------------------------------')
 
     # wait for 5 seconds
