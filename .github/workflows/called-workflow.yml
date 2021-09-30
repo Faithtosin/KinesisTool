@@ -1,0 +1,18 @@
+
+on:
+  workflow_call:
+    inputs:
+      username:
+        required: true
+        type: string
+      env:
+        required: true
+        type: string
+
+
+jobs:
+  example_job:
+    name: Pass input  my-action
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ inputs.username }} and ${{ inputs.env }}" 
