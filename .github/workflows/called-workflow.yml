@@ -17,6 +17,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          repository: Faithtosin/KinesisTool
+          ref: master
         
       - run: echo "${{ inputs.username }} and ${{ inputs.env }}" 
       - run: ls -la 
