@@ -15,4 +15,9 @@ jobs:
     name: Pass input  my-action
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
       - run: echo "${{ inputs.username }} and ${{ inputs.env }}" 
+      - run: ls -la 
+        name: Check files in repo
